@@ -1,4 +1,10 @@
-//Program to demonstrate Online Shopping Application
+// Online Shopping Application
+// Code by: Faza Ulfath
+// Date: September 8, 2024
+// Description: This Java program demonstrates an online shopping application with Admin and Customer modules. 
+// The admin can manage products, view orders, and update order statuses. 
+// Customers can create accounts, view products, and place orders.
+
 package com.tnsif.onlineshopping.application;
 
 import java.util.ArrayList;
@@ -16,6 +22,7 @@ import com.tnsif.onlineshopping.services.OrderService;
 import com.tnsif.onlineshopping.services.ProductService;
 
 public class OnlineShopping {
+	// Here are the services that handle the core operations for products, customers, orders, and admins
 	private static ProductService productService = new ProductService();
 	private static CustomerService customerService = new CustomerService();
 	private static OrderService orderService = new OrderService();
@@ -24,102 +31,111 @@ public class OnlineShopping {
 	public static void main (String[] args) {
 
 		Scanner scanner = new Scanner (System. in);
+		
+		// Main loop for the whole application - keeps running until the user chooses to exit
 		while (true) {
-			System. out.println ("1. Admin Menu");
-			System. out.println ("2. Customer Menu");
-			System. out.println ("3. Exit");
-			System. out. print ("Choose an option: ");
+			System.out.println ("1. Admin Menu");
+			System.out.println ("2. Customer Menu");
+			System.out.println ("3. Exit");
+			System.out. print ("Choose an option: ");
 			int choice = scanner.nextInt();
-	
+			
+			// Based on user choice, we either show the Admin menu, Customer menu, or exit
 			switch (choice) {
 			case 1: //Admin Module
 				int adminChoice;
 				do {
-					System. out.println("\nAdmin Menu:");
-					System. out.println ("1. Add Product");
-					System. out.println("2. Remove Product");
+					System.out.println("\nAdmin Menu:");
+					System.out.println ("1. Add Product");
+					System.out.println("2. Remove Product");
 					System.out.println ("3. View Products");
-					System. out.println ("4. Create Admin");
+					System.out.println ("4. Create Admin");
 					System.out.println("5. View Admins");
-					System. out.println ("6. Update Order Status");
-					System. out.println("7. View Orders");
-					System. out.println("8. Return");
-					System. out.print ("Choose an option: ");
+					System.out.println ("6. Update Order Status");
+					System.out.println("7. View Orders");
+					System.out.println("8. Return");
+					System.out.print ("Choose an option: ");
 					adminChoice = scanner.nextInt();
 					
+					// Admin Menu - this is where admins can manage products, view orders, etc.
 					switch (adminChoice) {
 					case 1:
-						addProduct(scanner) ;
+						addProduct(scanner);
 						break;
 					case 2:
-						removeProduct (scanner) ;
+						removeProduct(scanner);
 						break;
 					case 3:
-						viewProducts () ;
+						viewProducts();
 						break;
 					case 4:
-						createAdmin (scanner);
+						createAdmin(scanner);
 						break;
 					case 5:
-						viewAdmins () ;
+						viewAdmins() ;
 						break;
 					case 6:
-						updateOrderStatus (scanner) ;
+						updateOrderStatus(scanner);
 						break;
 					case 7:
-						viewOrders () ;
+						viewOrders();
 						break;
 					case 8:
-						System.out.println ("Exiting Admin ... ");
+						System.out.println("Exiting Admin Menu...");
 						break;
 					default:
-						System.out.println ("Invalid choice! Please try again.");
+						System.out.println("Invalid choice! Please try again.");
 					}
 				} while (adminChoice != 8);
 				
 			case 2: //Customer Module
 				int customerChoice;
 				do {
-					System. out.println ("\nCustomer Menu:");
-					System. out.println ("1. Create Customer") ;
-					System. out.println ("2. View Customers");
-					System. out.println ("3. Place Order") ;
-					System. out.println ("4. View Orders") ;
-					System. out.println ("5. View Products");
-					System. out.println ("6. Return") ;
-					System. out.print ("Choose an option: ");
-					customerChoice = scanner.nextInt () ;
+					System.out.println("\nCustomer Menu:");
+					System.out.println("1. Create Customer");
+					System.out.println("2. View Customers");
+					System.out.println("3. Place Order") ;
+					System.out.println("4. View Orders") ;
+					System.out.println("5. View Products");
+					System.out.println("6. Return");
+					System.out.print("Choose an option: ");
+					customerChoice = scanner.nextInt();
+					
+					// Customer Menu - customers can browse products, create accounts, and place orders
 					switch (customerChoice) {
 					case 1:
-						createCustomer (scanner);
+						createCustomer(scanner);
 						break;
 					case 2:
-						viewCustomers () ;
+						viewCustomers();
 						break;
 					case 3:
 						placeOrder(scanner);
 						break;
 					case 4:
-						viewOrders () ;
+						viewOrdersForCustomer(scanner);
 						break;
 					case 5:
-						viewProducts () ;
+						viewProducts();
 						break;
 					case 6:
-						System. out.println ("Exiting Customer Menu ... ") ;
+						System.out.println ("Exiting Customer Menu... ");
 						break;
 					default:
-						System. out.println ("Invalid choice! Please try again.");
+						System.out.println ("Invalid choice! Please try again.");
 					}
 				} while (customerChoice != 6);
 				break;
 				
 				case 3:
-					System. out.println("Exiting ... ");
-					scanner.close () ;
+					// If the user chooses to exit, we say goodbye and close the scanner
+					System.out.println("Thanks for using the Online Shopping Application. Goodbye!");
+					scanner.close ();
 					return;
+					
 				default:
-					System. out.println ("Invalid choice! Please try again.");
+					// If the user enters anything unexpected, we guide them to try again
+					System.out.println("Oops! That wasn't a valid choice. Please try again.");
 
 				}
 
@@ -127,29 +143,32 @@ public class OnlineShopping {
 			
 		}
 		
+		// Adding a new product to the store
 		private static void addProduct (Scanner scanner) {
-			System. out.print ("Enter Product ID: ") ;
-			int productId = scanner.nextInt () ;
-			System. out.print ("Enter Product Name: ") ;
-			String name = scanner.next () ;
-			System. out. print ("Enter Product Price: ") ;
-			double price = scanner.nextDouble () ;
-			System. out. print ("Enter Stock Quantity: ") ;
-			int stockQuantity = scanner.nextInt ();
+			System.out.print("Enter Product ID: ");
+			int productId = scanner.nextInt() ;
+			System.out.print("Enter Product Name: ");
+			String name = scanner.next();
+			System.out.print("Enter Product Price: ");
+			double price = scanner.nextDouble() ;
+			System.out.print("Enter Stock Quantity: ");
+			int stockQuantity = scanner.nextInt();
 
-			Product product = new Product (productId, name, price, stockQuantity) ;
-			productService.addProduct (product);
-			System.out.println ("Product added successfully!") ;
+			Product product = new Product (productId, name, price, stockQuantity);
+			productService.addProduct(product);
+			System.out.println("Product added successfully!");
 		}
 
+		// Removing an existing product from the store
 		private static void removeProduct (Scanner scanner) {
-			System.out.print ("Enter Product ID: ") ;
-			int productId = scanner.nextInt ();
+			System.out.print("Enter Product ID: ");
+			int productId = scanner.nextInt();
 			
-			productService.removeProduct(productId) ;
-			System.out.println ("Product removed successfully!");
+			productService.removeProduct(productId);
+			System.out.println("Product removed successfully!");
 		}
 		
+		// Display all products that are available for purchase
 		private static void viewProducts() {
 	        List<Product> products = productService.getProducts();
 	        if (products.isEmpty()) {
@@ -163,6 +182,7 @@ public class OnlineShopping {
 	        }
 	    }
 		
+		// Admins can create new admin accounts
 		private static void createAdmin(Scanner scanner) {
 	        System.out.print("Enter Admin ID: ");
 	        int userId = scanner.nextInt();
@@ -176,6 +196,7 @@ public class OnlineShopping {
 	        System.out.println("Admin created successfully!");
 	    }
 
+		// Display a list of all admins
 	    private static void viewAdmins() {
 	        System.out.println("List of Admins:");
 	        for (Admin admin : adminService.getAdmins()) {
@@ -183,6 +204,7 @@ public class OnlineShopping {
 	        }
 	    }
 		
+	    // Admins can update the status of a customer’s order
 	    private static void updateOrderStatus(Scanner scanner) {
 	        System.out.print("Enter Order ID: ");
 	        int orderId = scanner.nextInt();
@@ -198,6 +220,7 @@ public class OnlineShopping {
 	        }
 	    }
 		
+	    // Display all orders placed by customers
 		private static void viewOrders() {
 	        List<Order> orders = orderService.getOrders();
 	        if (orders.isEmpty()) {
@@ -211,6 +234,7 @@ public class OnlineShopping {
 	        }
 	    }
 		
+		// Creating a new customer account
 		private static void createCustomer(Scanner scanner) {
 	        System.out.print("Enter User ID: ");
 	        int userId = scanner.nextInt();
@@ -226,6 +250,7 @@ public class OnlineShopping {
 	        System.out.println("Customer created successfully!");
 	    }
 		
+		// Display all customers in the system
 		private static void viewCustomers() {
 	        List<Customer> customers = customerService.getCustomers();
 	        if (customers.isEmpty()) {
@@ -239,6 +264,7 @@ public class OnlineShopping {
 	        }
 	    }
 		
+		// Customers can place an order for a product
 		private static void placeOrder(Scanner scanner) {
 		    System.out.print("Enter Customer ID: ");
 		    int customerId = scanner.nextInt();
@@ -279,7 +305,7 @@ public class OnlineShopping {
 		    return (int) (Math.random() * 10000);
 		}
 
-		
+		// Customers can view their own orders
 		private static void viewOrdersForCustomer(Scanner scanner) {
 		    System.out.print("Enter Customer ID: ");
 		    int customerId = scanner.nextInt();
