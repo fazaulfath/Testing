@@ -2,8 +2,8 @@
 // Code by: Faza Ulfath
 // Date: September 8, 2024
 // Description: This Java program demonstrates an online shopping application with Admin and Customer modules. 
-// The admin can manage products, view orders, and update order statuses. 
-// Customers can create accounts, view products, and place orders.
+// The admin can manage products, view orders, and update order statuses
+// Customers can create accounts, view products, and place orders
 
 package com.tnsif.onlineshopping.application;
 
