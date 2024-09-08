@@ -1,4 +1,10 @@
-//Program to define Order Service - place the order, update the status, retrieve order by ID and List all orders
+// Program to define Order Service - place the order, update the status, retrieve order by ID and list all orders
+// Code by: Faza Ulfath
+// Date: September 8, 2024
+// Description: This class provides service-level operations for managing Order entities in the
+// online shopping system. It includes methods to place an order, update the status, retrieve an order by ID,
+// list all orders, and get orders for a specific customer.
+
 package com.tnsif.onlineshopping.services;
 
 import java.util.ArrayList;
@@ -10,16 +16,18 @@ import com.tnsif.onlineshopping.entities.Product;
 import com.tnsif.onlineshopping.entities.ProductQuantityPair;
 
 public class OrderService {
-	private List<Order> orderList = new ArrayList<>();
+    private List<Order> orderList = new ArrayList<>();
 
-	public OrderService() {
-	}
+    public OrderService() {
+    }
 
-	public void placeOrder (Order order) {
-		orderList.add (order);
-	}
-	
-	public boolean updateOrderStatus(int orderId, String status) {
+    // Method to place an order
+    public void placeOrder(Order order) {
+        orderList.add(order);
+    }
+    
+    // Method to update order status
+    public boolean updateOrderStatus(int orderId, String status) {
         Order order = getOrder(orderId);
 
         if (order != null) {
@@ -54,15 +62,21 @@ public class OrderService {
         }
     }
 
-	public Order getOrder (int orderId) {
-		return orderList. stream() .filter (order -> order.getOrderId () == orderId) .findFirst () .orElse (null);
-	}
-	
-	public List<Order> getOrders () {
-		return orderList;
-	}
-	
-	public List<Order> getOrdersForCustomer(int customerId) {
+    // Method to retrieve an order by ID
+    public Order getOrder(int orderId) {
+        return orderList.stream()
+                .filter(order -> order.getOrderId() == orderId)
+                .findFirst()
+                .orElse(null);
+    }
+    
+    // Method to get the list of all orders
+    public List<Order> getOrders() {
+        return orderList;
+    }
+    
+    // Method to get orders for a specific customer
+    public List<Order> getOrdersForCustomer(int customerId) {
         return orderList.stream()
                 .filter(order -> order.getCustomer().getUserId() == customerId)
                 .collect(Collectors.toList());

@@ -1,4 +1,10 @@
 // Program to define AdminService class
+// Code by: Faza Ulfath
+// Date: September 8, 2024
+// Description: This class provides service-level operations for managing Admin entities in
+// the online shopping system. It includes methods to add, retrieve, and remove admins from
+// an internal list.
+
 package com.tnsif.onlineshopping.services;
 
 import java.util.ArrayList;
