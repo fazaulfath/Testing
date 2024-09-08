@@ -1,3 +1,9 @@
+// Program to define the Order entity
+// Code by: Faza Ulfath
+// Date: September 7, 2024
+// Functionality: This class represents an order in the online shopping application. 
+// It includes details about the order ID, customer, order status, and the list of products in the order.
+
 package com.tnsif.onlineshopping.entities;
 
 import java.util.List;
