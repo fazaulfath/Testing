@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.tnsif.onlineshopping.entities.Customer;
 
-public class CustomerServices {
+public class CustomerService {
 	private List<Customer> customerList = new ArrayList<> ();
 
 	public void addCustomer (Customer customer) {

@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.tnsif.onlineshopping.entities.Admin;
 
-public class AdminServices {
+public class AdminService {
 
 	private List<Admin> adminList = new ArrayList<>();
 
